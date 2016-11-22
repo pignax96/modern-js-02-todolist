@@ -8,6 +8,21 @@
 
   <link rel="stylesheet"
     href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet"
+    href="./bower_components/font-awesome/css/font-awesome.min.css">
+
+  <style>
+    body{
+      margin: 50px 0;
+    }
+    input{
+      margin-top: 10px;
+    }
+    li{
+      font-size: 18px;
+      margin: 10px 0;
+    }
+  </style>
 
 </head>
 <body>
@@ -16,13 +31,32 @@
   <div class="container">
     <h1>To Do List App</h1>
 
+    <form>
+      <input type="text" class="form-control"
+        placeholder="type something and press enter...">
+    </form>
+
+    <hr>
+
+    <ul>
+      <!-- qui gli elementi renderizzati -->
+    </ul>
 
   </div>
 
 
-  <!-- Item template -->
+  <!-- Template elemento -->
   <template>
 
+  <li>
+    {{item}}
+    <button
+      data-index="{{index}}"
+      class="btn btn-danger btn-sm"
+      onclick="removeItem(event)">
+        <span class="fa fa-trash-o"></span>
+    </button>
+  </li>
 
   </template>
 
