@@ -5,6 +5,7 @@ var input = document.querySelector('input');
 var template = document.querySelector('template');
 var list = document.querySelector('ul');
 var todo = [];
+var checkLocal = localStorage.getItem('mohole-todo');
 
 // Disegna elementi nella lista
 function render(collection){
@@ -25,6 +26,13 @@ function removeItem(evt){
   });
   todo = filter;
   render(todo);
+  saveLocal(todo);
+}
+
+// Trasforma un oggetto o array JSON in stringa e salva in localStorage
+function saveLocal(collection){
+  var string = JSON.stringify(collection);
+  localStorage.setItem('mohole-todo', string);
 }
 
 // Aggiunge nuovo elemento
@@ -33,8 +41,13 @@ form.addEventListener('submit', function(evt){
   var text = input.value;
   todo.push(text);
   render(todo);
+  saveLocal(todo);
   input.value = '';
 });
+
+if(checkLocal){
+  todo = JSON.parse(checkLocal);
+}
 
 // Primo render
 render(todo);
